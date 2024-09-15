@@ -24,6 +24,7 @@ export default function Kanbas() {
           </td>
         </tr>
       </table>
+      <a href="../">Return to Land Page</a>
     </div>
   );
 }

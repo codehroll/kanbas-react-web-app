@@ -34,6 +34,8 @@ export default function AssignmentEditor() {
               <option selected value="ASSIGNMENTS">
                 ASSIGNMENTS
               </option>
+              <option value="option2">OPTION2</option>
+              <option value="option3">OPTION3</option>
             </select>
           </td>
         </tr>
@@ -47,6 +49,8 @@ export default function AssignmentEditor() {
               <option selected value="Percentage">
                 Percentage
               </option>
+              <option value="option2">OPTION2</option>
+              <option value="option3">OPTION3</option>
             </select>
           </td>
         </tr>
@@ -60,6 +64,8 @@ export default function AssignmentEditor() {
               <option selected value="Online">
                 Online
               </option>
+              <option value="option2">OPTION2</option>
+              <option value="option3">OPTION3</option>
             </select>
           </td>
         </tr>
