@@ -74,16 +74,36 @@ export default function AssignmentEditor() {
           <td align="right" valign="top"></td>
           <td>
             <label>Online Entry Options</label> <br />
-            <input type="checkbox" id="wd-text-entry"></input>
+            <input
+              type="checkbox"
+              name="online-entry-check-genre"
+              id="wd-text-entry"
+            ></input>
             <label htmlFor="wd-text-entry">Text Entry</label> <br />
-            <input type="checkbox" id="wd-website-url"></input>
+            <input
+              type="checkbox"
+              name="online-entry-check-genre"
+              id="wd-website-url"
+            ></input>
             <label htmlFor="wd-website-url">Website URL</label> <br />
-            <input type="checkbox" id="wd-media-recordings"></input>
+            <input
+              type="checkbox"
+              name="online-entry-check-genre"
+              id="wd-media-recordings"
+            ></input>
             <label htmlFor="wd-media-recordings">Media Recordings</label> <br />
-            <input type="checkbox" id="wd-student-annotation"></input>
+            <input
+              type="checkbox"
+              name="online-entry-check-genre"
+              id="wd-student-annotation"
+            ></input>
             <label htmlFor="wd-student-annotation">Student Annotation</label>
             <br />
-            <input type="checkbox" id="wd-file-upload"></input>
+            <input
+              type="checkbox"
+              name="online-entry-check-genre"
+              id="wd-file-upload"
+            ></input>
             <label htmlFor="wd-file-upload">File Upload</label> <br />
           </td>
         </tr>
