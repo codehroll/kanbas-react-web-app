@@ -10,12 +10,15 @@ function App() {
     <HashRouter>
       <div>
         {/* <Labs /> */}
-        <h4>Di He, Section 1</h4>
-        <a href="https://github.com/codehroll/kanbas-react-web-app/tree/a1">
-          Source Code
-        </a>
+        <h4>
+          Di He, Section 1{" "}
+          <a href="https://github.com/codehroll/kanbas-react-web-app/tree/a1">
+            Source Code
+          </a>
+        </h4>
+
         <Routes>
-          <Route path="/" element={<Navigate to="Labs" />} />
+          <Route path="/" element={<Navigate to="/Kanbas" />} />
           <Route path="/Labs/*" element={<Labs />} />
           <Route path="/Kanbas/*" element={<Kanbas />} />
         </Routes>
