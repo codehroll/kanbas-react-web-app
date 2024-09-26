@@ -1,4 +1,5 @@
 import "./index.css";
+import ReactIcons from "./ReactIcons";
 export default function Lab2() {
   return (
     <div id="wd-lab2">
@@ -315,9 +316,66 @@ export default function Lab2() {
           <img
             className="wd-float-right"
             src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg"
+            alt="an artificial satellite"
           />
           <div className="wd-float-done"></div>
         </div>
+      </div>
+
+      {/* Laying out content in a grid */}
+      <div id="wd-css-grid-layout">
+        <div id="wd-css-left-right-layout">
+          <h2>Grid layout</h2>
+          <div className="wd-grid-row">
+            <div className="wd-grid-col-half-page wd-bg-color-yellow">
+              <h3>Left half</h3>
+            </div>
+            <div className="wd-grid-col-half-page wd-bg-color-blue wd-fg-color-white">
+              <h3>Right half</h3>
+            </div>
+          </div>
+        </div>
+        <div id="wd-css-left-third-right-two-thirds" className="wd-grid-row">
+          <div
+            className="wd-grid-col-third-page wd-bg-color-green
+        wd-fg-color-white"
+          >
+            <h3>Left third</h3>
+          </div>
+          <div className="wd-grid-col-two-thirds-page wd-bg-color-red wd-fg-color-white">
+            <h3>Right two thirds</h3>
+          </div>
+        </div>
+        <div id="wd-css-side-bars" className="wd-grid-row">
+          <div className="wd-grid-col-left-sidebar wd-bg-color-yellow">
+            <h3>Side bar</h3>
+            <p>This is the left sidebar</p>
+          </div>
+          <div className="wd-grid-col-main-content wd-bg-color-blue wd-fg-color-white">
+            <h3>Main content</h3>
+            <p>
+              This is the main content. This is the main content. This is the
+              main content.
+            </p>
+          </div>
+          <div className="wd-grid-col-right-sidebar wd-bg-color-green wd-fg-color-white">
+            <h3>Side bar</h3>
+            <p>This is the right sidebar</p>
+          </div>
+        </div>
+      </div>
+      {/* 3.1.19 Flex */}
+      <div id="wd-css-flex">
+        <h2>Flex</h2>
+        <div className="wd-flex-row-container">
+          <div className="wd-bg-color-yellow wd-width-75px">Column 1</div>
+          <div className="wd-bg-color-blue">Column 2</div>
+          <div className="wd-bg-color-red wd-flex-grow-1">Column 3</div>
+        </div>
+      </div>
+
+      <div>
+        <ReactIcons />
       </div>
     </div>
   );
