@@ -5,17 +5,22 @@ import TOC from "./TOC";
 import { Route, Routes, Navigate } from "react-router";
 
 export default function Labs() {
-    return (
-        <div id="wd-labs">
-            <h1>Labs</h1>
-            <TOC />
-            <Routes>
-                <Route path="/" element={<Navigate to="Lab1" />} />
-                <Route path="Lab1" element={<Lab1 />} />
-                <Route path="Lab2" element={<Lab2 />} />
-                <Route path="Lab3" element={<Lab3 />} />
-            </Routes>
-        </div>
-
-    );
+  return (
+    <div id="wd-labs">
+      <h4>
+        Di He, Section 1{" "}
+        <a href="https://github.com/codehroll/kanbas-react-web-app/tree/a1">
+          Source Code
+        </a>
+      </h4>
+      <h1>Labs</h1>
+      <TOC />
+      <Routes>
+        <Route path="/" element={<Navigate to="Lab1" />} />
+        <Route path="Lab1" element={<Lab1 />} />
+        <Route path="Lab2" element={<Lab2 />} />
+        <Route path="Lab3" element={<Lab3 />} />
+      </Routes>
+    </div>
+  );
 }
