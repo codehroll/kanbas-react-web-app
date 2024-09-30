@@ -594,6 +594,180 @@ export default function Lab2() {
           id="range1"
         />
       </div>
+
+      {/* 3.3.14 Styling Addons */}
+      <div id="wd-css-styling-addons">
+        <h3>Addons</h3>
+        <div className="input-group mb-3">
+          <span className="input-group-text">$</span>
+          <span className="input-group-text">0.00</span>
+          <input type="text" className="form-control" />
+        </div>
+        <div className="input-group">
+          <input type="text" className="form-control" />
+          <span className="input-group-text">$</span>
+          <span className="input-group-text">0.00</span>
+        </div>
+      </div>
+
+      {/* 3.3.15 Responsive Forms */}
+      <div id="wd-css-responsive-forms-1">
+        <h3>Responsive forms</h3>
+        <div className="mb-3 row">
+          <label htmlFor="email1" className="col-sm-2 col-form-label">
+            Email
+          </label>
+          <div className="col-sm-10">
+            <input
+              type="text"
+              className="form-control"
+              id="email1"
+              value="email@example.com"
+            />
+          </div>
+        </div>
+        <div className="mb-3 row">
+          <label htmlFor="password1" className="col-sm-2 col-form-label">
+            Password
+          </label>
+          <div className="col-sm-10">
+            <input type="password" id="password1" className="form-control" />
+          </div>
+        </div>
+        <div className="mb-3 row">
+          <label htmlFor="textarea2" className="col-sm-2 col-form-label">
+            Bio
+          </label>
+          <div className="col-sm-10">
+            <textarea
+              className="form-control"
+              id="textarea2"
+              rows={3}
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div id="wd-css-responsive-forms-2">
+        <h3>Responsive forms</h3>
+        <form>
+          <div className="row mb-3">
+            <label htmlFor="r1" className="col-sm-2 col-form-label">
+              Email
+            </label>
+            <div className="col-sm-10">
+              <input type="email" className="form-control" id="r1" />
+            </div>
+          </div>
+          <div className="row mb-3">
+            <label htmlFor="r2" className="col-sm-2 col-form-label">
+              Password
+            </label>
+            <div className="col-sm-10">
+              <input type="password" className="form-control" id="r2" />
+            </div>
+          </div>
+          <fieldset className="row mb-3">
+            <legend className="col-form-label col-sm-2 pt-0">Radios</legend>
+            <div className="col-sm-10">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="gridRadios"
+                  id="r3"
+                  value="option1"
+                  checked
+                />
+                <label className="form-check-label" htmlFor="r3">
+                  First radio
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="gridRadios"
+                  id="r4"
+                  value="option2"
+                />
+                <label className="form-check-label" htmlFor="r4">
+                  Second radio
+                </label>
+              </div>
+              <div className="form-check disabled">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="gridRadios"
+                  id="r5"
+                  value="option3"
+                  disabled
+                />
+                <label className="form-check-label" htmlFor="r5">
+                  Third disabled radio
+                </label>
+              </div>
+            </div>
+          </fieldset>
+          <div className="row mb-3">
+            <div className="col-sm-10 offset-sm-2">
+              <div className="form-check">
+                <input className="form-check-input" type="checkbox" id="r6" />
+                <label className="form-check-label" htmlFor="r6">
+                  Example checkbox
+                </label>
+              </div>
+            </div>
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Sign in
+          </button>
+        </form>
+      </div>
+
+      {/* 3.3.16 Navigating with Tabs */}
+      <div id="wd-css-navigating-with-tabs">
+        <h2>Tabs</h2>
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <a className="nav-link active" href="#">
+              Active
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">
+              Link
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">
+              Link
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link disabled" href="#">
+              Disabled
+            </a>
+          </li>
+        </ul>
+      </div>
+      {/* 3.3.18 Navigating with cards */}
+      <div id="wd-css-navigating-with-cards">
+        <h2>Cards</h2>
+        <div className="card" style={{ width: "18rem" }}>
+          <img src="images/stacked.jpg" className="card-img-top" />
+          <div className="card-body">
+            <h5 className="card-title">Stacking Starship</h5>
+            <p className="card-text">
+              Stacking the most powerful rocket in history. Mars or bust!
+            </p>
+            <a href="#" className="btn btn-primary">
+              Boldly Go
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
