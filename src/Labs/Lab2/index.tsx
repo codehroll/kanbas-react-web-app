@@ -752,6 +752,7 @@ export default function Lab2() {
           </li>
         </ul>
       </div>
+
       {/* 3.3.18 Navigating with cards */}
       <div id="wd-css-navigating-with-cards">
         <h2>Cards</h2>
