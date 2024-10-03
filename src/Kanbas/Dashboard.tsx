@@ -8,12 +8,12 @@ export default function Dashboard() {
         <div className="row row-cols-1 row-cols-md-5 g-4">
           {/*  course 1*/}
           <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card">
+            <div className="card w-100 h-100">
               <Link
                 className="wd-dashboard-course-link text-decoration-none text-dark"
                 to="/Kanbas/Courses/1234/Home"
               >
-                <img src="images/reactjs.jpg" width="100%" />
+                <img src="images/reactjs.jpg" width="100%" height={150} />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
                     CS1234 React JS
@@ -26,12 +26,12 @@ export default function Dashboard() {
           </div>
           {/*  course 2*/}
           <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card">
+            <div className="card w-100 h-100">
               <Link
                 className="wd-dashboard-course-link text-decoration-none text-dark"
                 to="/Kanbas/Courses/5001/Home"
               >
-                <img src="/images/python.jpg" width="100%" />
+                <img src="/images/python.jpg" width="100%" height={150} />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
                     CS5001 Fundamentals
@@ -46,12 +46,12 @@ export default function Dashboard() {
           </div>
           {/*  course 3*/}
           <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card">
+            <div className="card w-100 h-100">
               <Link
                 className="wd-dashboard-course-link text-decoration-none text-dark"
                 to="/Kanbas/Courses/5002/Home"
               >
-                <img src="/images/Math.png" width="100%" />
+                <img src="/images/Math.png" width="100%" height={150} />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
                     CS5002 Discrete Structures
@@ -64,12 +64,12 @@ export default function Dashboard() {
           </div>
           {/*  course 4*/}
           <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card">
+            <div className="card w-100 h-100">
               <Link
                 className="wd-dashboard-course-link text-decoration-none text-dark"
                 to="/Kanbas/Courses/5004/Home"
               >
-                <img src="/images/Java.jpg" width="100%" />
+                <img src="/images/Java.jpg" width="100%" height={150} />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
                     CS5004 Object-Oriented Design
@@ -82,12 +82,16 @@ export default function Dashboard() {
           </div>
           {/*  course 5*/}
           <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card">
+            <div className="card w-100 h-100">
               <Link
                 className="wd-dashboard-course-link text-decoration-none text-dark"
                 to="/Kanbas/Courses/5008/Home"
               >
-                <img src="/images/Data Structures.png" width="100%" />
+                <img
+                  src="/images/Data Structures.png"
+                  width="100%"
+                  height={150}
+                />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
                     CS5008 Data Structures
@@ -103,12 +107,12 @@ export default function Dashboard() {
           </div>
           {/*  course 6*/}
           <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card">
+            <div className="card w-100 h-100">
               <Link
                 className="wd-dashboard-course-link text-decoration-none text-dark"
                 to="/Kanbas/Courses/5800/Home"
               >
-                <img src="/images/algorithm.jpg" width="100%" />
+                <img src="/images/algorithm.jpg" width="100%" height={150} />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
                     CS5800 Algorithms
@@ -121,12 +125,12 @@ export default function Dashboard() {
           </div>
           {/*  course 7*/}
           <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-            <div className="card">
+            <div className="card w-100 h-100">
               <Link
                 className="wd-dashboard-course-link text-decoration-none text-dark"
                 to="/Kanbas/Courses/5200/Home"
               >
-                <img src="/images/database.jpg" width="100%" />
+                <img src="/images/database.jpg" width="100%" height={150} />
                 <div className="card-body">
                   <h5 className="wd-dashboard-course-title card-title">
                     CS5200 Database

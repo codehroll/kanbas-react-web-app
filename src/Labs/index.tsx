@@ -6,10 +6,10 @@ import { Route, Routes, Navigate } from "react-router";
 
 export default function Labs() {
   return (
-    <div id="wd-labs">
+    <div id="wd-labs" className="container-fluid">
       <h4>
         Di He, Section 1{" "}
-        <a href="https://github.com/codehroll/kanbas-react-web-app/tree/a1">
+        <a href="https://github.com/codehroll/kanbas-react-web-app/tree/a2">
           Source Code
         </a>
       </h4>

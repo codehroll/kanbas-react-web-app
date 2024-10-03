@@ -35,7 +35,7 @@ body * {
 }
 
 .wd-rounded-corners-all-around {
-  border-radius: 20px;
+  border-radius: 15px;
   border-color: gray;
   border-style: solid;
   padding: 3px 5px;
