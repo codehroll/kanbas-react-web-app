@@ -15,7 +15,7 @@
     "description": "Perform a detailed analysis of combustion processes in aerospace engines and determine factors affecting fuel efficiency.",
     "points": 150,
     "due_date": 1730286000,
-    "available_date": 1730286000
+    "available_date": 1730285000
   },
   {
     "_id": "A103",
@@ -23,8 +23,8 @@
     "course": "RS101",
     "description": "Design an efficient nozzle for a rocket engine, considering pressure, velocity, and material constraints.",
     "points": 200,
-    "due_date": 1730286000,
-    "available_date": 1730764800
+    "due_date": 1730686000,
+    "available_date": 1730464800
   },
   {
     "_id": "A201",
@@ -50,7 +50,7 @@
     "course": "RS102",
     "description": "Evaluate thermal loads and heat transfer mechanisms on aerospace structures in high-speed flight.",
     "points": 100,
-    "due_date": 1730286000,
+    "due_date": 1730786000,
     "available_date": 1730505600
   },
   {
@@ -59,7 +59,7 @@
     "course": "RS103",
     "description": "Design a lightweight, high-strength structural component for a spacecraft, considering material properties and safety factors.",
     "points": 180,
-    "due_date": 1730286000,
+    "due_date": 1731286000,
     "available_date": 1731196800
   },
   {
@@ -69,7 +69,7 @@
     "description": "Perform calculations to determine orbital trajectories and parameters for satellite positioning and station-keeping.",
     "points": 130,
     "due_date": 1730286000,
-    "available_date": 1731628800
+    "available_date": 1730228800
   },
   {
     "_id": "A303",
@@ -78,6 +78,6 @@
     "description": "A comprehensive exam on systems engineering principles, covering lifecycle management, integration, and risk assessment in aerospace projects.",
     "points": 200,
     "due_date": 1730286000,
-    "available_date": 1732096800
+    "available_date": 1730096800
   }
 ]
