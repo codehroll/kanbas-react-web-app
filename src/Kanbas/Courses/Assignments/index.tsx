@@ -49,8 +49,10 @@ export default function Assignments() {
                       <p className="mb-0">
                         <span className="text-danger">Multiple Modules </span> |
                         <strong> Not Available until</strong>{" "}
-                        {assignment.available_date} |<strong> Due </strong>
-                        {assignment.due_date}| {assignment.points} pts
+                        {formatDateToCustomString(assignment.available_date)} |
+                        <strong> Due </strong>
+                        {formatDateToCustomString(assignment.due_date)}|{" "}
+                        {assignment.points} pts
                       </p>
                     </div>
                     <div className="col-auto float-end">
@@ -65,4 +67,21 @@ export default function Assignments() {
       </ul>
     </div>
   );
+}
+
+function formatDateToCustomString(unixTime: number) {
+  const date = new Date(unixTime * 1000);
+  const isoString = date.toISOString();
+  const [datePart, timePart] = isoString.split("T");
+
+  // Get the hours and minutes
+  const [hourStr, minute] = timePart.split(":");
+  const hour = parseInt(hourStr);
+
+  // Convert hour to 12-hour format and determine AM/PM
+  const hour12 = hour % 12 || 12;
+  const amPm = hour >= 12 ? "PM" : "AM";
+
+  // Format the output
+  return `${datePart} at ${hour12}:${minute.slice(0, 2)}${amPm}`;
 }

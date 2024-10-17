@@ -187,10 +187,16 @@ export default function AssignmentEditor() {
             </label>
 
             <input
-              type="date"
+              type="datetime-local"
               id="wd-due-date"
               className="form-control"
-              value={curAssignment?.due_date.split(" at ")[0] || ""}
+              value={
+                curAssignment?.due_date
+                  ? new Date(curAssignment.due_date * 1000)
+                      .toISOString()
+                      .slice(0, 16)
+                  : ""
+              }
             />
             <div className="row">
               <div className="col">
@@ -202,9 +208,15 @@ export default function AssignmentEditor() {
                 </label>
                 <input
                   id="wd-available-from"
-                  type="date"
+                  type="datetime-local"
                   className="form-control mb-3"
-                  value={curAssignment?.available_date.split(" at ")[0] || ""}
+                  value={
+                    curAssignment?.available_date
+                      ? new Date(curAssignment.available_date * 1000)
+                          .toISOString()
+                          .slice(0, 16)
+                      : ""
+                  }
                 />
               </div>
               <div className="col">
@@ -216,9 +228,15 @@ export default function AssignmentEditor() {
                 </label>
                 <input
                   id="wd-available-until"
-                  type="date"
+                  type="datetime-local"
                   className="form-control mb-3"
-                  value=""
+                  value={
+                    curAssignment?.available_date
+                      ? new Date(curAssignment.due_date * 1000)
+                          .toISOString()
+                          .slice(0, 16)
+                      : ""
+                  }
                 />
               </div>
             </div>

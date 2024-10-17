@@ -5,8 +5,8 @@
     "course": "RS101",
     "description": "Analyze the performance characteristics of different propulsion systems, focusing on thrust and efficiency.",
     "points": 100,
-    "due_date": "2024-11-10 at 11:59 pm",
-    "available_date": "2024-10-25 at 11:00 am"
+    "due_date": 1730286000,
+    "available_date": 1729854000
   },
   {
     "_id": "A102",
@@ -14,8 +14,8 @@
     "course": "RS101",
     "description": "Perform a detailed analysis of combustion processes in aerospace engines and determine factors affecting fuel efficiency.",
     "points": 150,
-    "due_date": "2024-11-17 at 11:59 pm",
-    "available_date": "2024-10-30 at 11:00 am"
+    "due_date": 1730286000,
+    "available_date": 1730286000
   },
   {
     "_id": "A103",
@@ -23,8 +23,8 @@
     "course": "RS101",
     "description": "Design an efficient nozzle for a rocket engine, considering pressure, velocity, and material constraints.",
     "points": 200,
-    "due_date": "2024-12-01 at 10:59 pm",
-    "available_date": "2024-11-05 at 12:00 am"
+    "due_date": 1730286000,
+    "available_date": 1730764800
   },
   {
     "_id": "A201",
@@ -32,8 +32,8 @@
     "course": "RS102",
     "description": "A timed quiz covering key concepts of aerodynamics, including lift, drag, and airflow patterns around airfoils.",
     "points": 50,
-    "due_date": "2024-11-05 at 09:59 pm",
-    "available_date": "2024-10-20 at 10:00 am"
+    "due_date": 1730286000,
+    "available_date": 1729418400
   },
   {
     "_id": "A202",
@@ -41,8 +41,8 @@
     "course": "RS102",
     "description": "Analyze airflow over various surfaces and calculate pressure distribution and velocity profiles.",
     "points": 120,
-    "due_date": "2024-11-12 at 11:59 pm",
-    "available_date": "2024-10-27 at 12:00 am"
+    "due_date": 1730286000,
+    "available_date": 1729987200
   },
   {
     "_id": "A203",
@@ -50,8 +50,8 @@
     "course": "RS102",
     "description": "Evaluate thermal loads and heat transfer mechanisms on aerospace structures in high-speed flight.",
     "points": 100,
-    "due_date": "2024-11-20 at 11:59 pm",
-    "available_date": "2024-11-02 at 12:00 am"
+    "due_date": 1730286000,
+    "available_date": 1730505600
   },
   {
     "_id": "A301",
@@ -59,8 +59,8 @@
     "course": "RS103",
     "description": "Design a lightweight, high-strength structural component for a spacecraft, considering material properties and safety factors.",
     "points": 180,
-    "due_date": "2024-11-28 at 11:59 pm",
-    "available_date": "2024-11-10 at 12:00 am"
+    "due_date": 1730286000,
+    "available_date": 1731196800
   },
   {
     "_id": "A302",
@@ -68,8 +68,8 @@
     "course": "RS103",
     "description": "Perform calculations to determine orbital trajectories and parameters for satellite positioning and station-keeping.",
     "points": 130,
-    "due_date": "2024-12-05 at 11:59 pm",
-    "available_date": "2024-11-15 at 12:00 am"
+    "due_date": 1730286000,
+    "available_date": 1731628800
   },
   {
     "_id": "A303",
@@ -77,7 +77,7 @@
     "course": "RS103",
     "description": "A comprehensive exam on systems engineering principles, covering lifecycle management, integration, and risk assessment in aerospace projects.",
     "points": 200,
-    "due_date": "2024-12-10 at 11:59 pm",
-    "available_date": "2024-11-20 at 10:00 am"
+    "due_date": 1730286000,
+    "available_date": 1732096800
   }
 ]
