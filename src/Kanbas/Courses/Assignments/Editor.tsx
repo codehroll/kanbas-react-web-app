@@ -1,4 +1,13 @@
+import { useParams } from "react-router";
+import * as db from "../../Database";
+import { Link } from "react-router-dom";
 export default function AssignmentEditor() {
+  const { cid, assignmentId } = useParams();
+  const assignments = db.assignments;
+  const curAssignment = assignments.find(
+    (assignment) => assignment._id === assignmentId
+  );
+
   return (
     <div id="wd-assignments-editor">
       <form>
@@ -6,7 +15,11 @@ export default function AssignmentEditor() {
           <strong>Assignment Name</strong>
         </label>
         <br />
-        <input id="wd-name" value="A1 - ENV + HTML" className="form-control" />
+        <input
+          id="wd-name"
+          value={curAssignment?.title || ""}
+          className="form-control"
+        />
         <br />
         <textarea
           id="wd-description"
@@ -14,7 +27,7 @@ export default function AssignmentEditor() {
           cols={40}
           rows={12}
         >
-          The assignment is available online. Submit a link to the landing page.
+          {curAssignment?.description || ""}
         </textarea>
         <br />
         <div className="mb-3 row">
@@ -29,7 +42,7 @@ export default function AssignmentEditor() {
               id="wd-points"
               type="text"
               className="form-control"
-              value={100}
+              value={curAssignment?.points || ""}
             />
           </div>
         </div>
@@ -177,7 +190,7 @@ export default function AssignmentEditor() {
               type="date"
               id="wd-due-date"
               className="form-control"
-              value="2024-09-07"
+              value={curAssignment?.due_date.split(" at ")[0] || ""}
             />
             <div className="row">
               <div className="col">
@@ -191,7 +204,7 @@ export default function AssignmentEditor() {
                   id="wd-available-from"
                   type="date"
                   className="form-control mb-3"
-                  value="2024-09-04"
+                  value={curAssignment?.available_date.split(" at ")[0] || ""}
                 />
               </div>
               <div className="col">
@@ -205,7 +218,7 @@ export default function AssignmentEditor() {
                   id="wd-available-until"
                   type="date"
                   className="form-control mb-3"
-                  value="2024-09-20"
+                  value=""
                 />
               </div>
             </div>
@@ -214,8 +227,10 @@ export default function AssignmentEditor() {
         <br />
         <hr />
         <div className="float-end">
-          <button className="btn btn-secondary me-2">Cancel </button>
-          <button className="btn btn-danger">Save </button>
+          <Link to={`/Kanbas/Courses/${cid}/Assignments/`}>
+            <button className="btn btn-secondary me-2">Cancel </button>
+            <button className="btn btn-danger">Save </button>{" "}
+          </Link>
         </div>
       </form>
     </div>

@@ -5,7 +5,14 @@ import { MdEditNote } from "react-icons/md";
 import { RxTriangleDown } from "react-icons/rx";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import { IoEllipsisVertical } from "react-icons/io5";
+import { useParams } from "react-router";
+import * as db from "../../Database";
+import { Link } from "react-router-dom";
+
 export default function Assignments() {
+  const { cid } = useParams();
+  const assignments = db.assignments;
+
   return (
     <div id="wd-assignments">
       <AssignmentsControls />
@@ -21,89 +28,38 @@ export default function Assignments() {
             <AssignAfterButtons />
           </div>
           <ul className="wd-assigns list-group rounded-0">
-            <li className="wd-lesson list-group-item p-3 ps-1">
-              <div className="row align-items-center">
-                <div className="col-auto">
-                  <BsGripVertical className="me-2 fs-3" />
-                  <MdEditNote className="me-2 fs-1 text-success" />
-                </div>
-                <div className="col">
-                  <p>
-                    <a
-                      className="wd-assignment-link nav-link fs-4"
-                      href="#/Kanbas/Courses/1234/Assignments/123"
-                    >
-                      A1
-                    </a>
-                  </p>
-                  <p className="mb-0">
-                    <span className="text-danger">Multiple Modules </span> |
-                    <strong> Not Available until</strong> May 6 at 12:00 am |
-                    <strong> Due </strong>May 13 at 11:59pm | 100 pts
-                  </p>
-                </div>
-                <div className="col-auto float-end">
-                  <GreenCheckmark />
-                  <IoEllipsisVertical className="fs-4" />
-                </div>
-              </div>
-            </li>
-
-            <li className="wd-lesson list-group-item p-3 ps-1">
-              <div className="row align-items-center">
-                <div className="col-auto">
-                  <BsGripVertical className="me-2 fs-3" />
-                  <MdEditNote className="me-2 fs-1 text-success" />
-                </div>
-                <div className="col">
-                  <p>
-                    <a
-                      className="wd-assignment-link nav-link fs-4"
-                      href="#/Kanbas/Courses/1234/Assignments/123"
-                    >
-                      A2
-                    </a>
-                  </p>
-                  <p className="mb-0">
-                    <span className="text-danger">Multiple Modules </span> |
-                    <strong> Not Available until</strong> May 13 at 12:00 am |
-                    <strong> Due </strong>May 20 at 11:59pm | 100 pts
-                  </p>
-                </div>
-                <div className="col-auto float-end">
-                  <GreenCheckmark />
-                  <IoEllipsisVertical className="fs-4" />
-                </div>
-              </div>
-            </li>
-
-            <li className="wd-lesson list-group-item p-3 ps-1">
-              <div className="row align-items-center">
-                <div className="col-auto">
-                  <BsGripVertical className="me-2 fs-3" />
-                  <MdEditNote className="me-2 fs-1 text-success" />
-                </div>
-                <div className="col">
-                  <p>
-                    <a
-                      className="wd-assignment-link nav-link fs-4"
-                      href="#/Kanbas/Courses/1234/Assignments/123"
-                    >
-                      A3
-                    </a>
-                  </p>
-                  <p className="mb-0">
-                    <span className="text-danger">Multiple Modules </span> |{" "}
-                    <strong> Not Available until</strong> May 20 at 12:00 am |{" "}
-                    <strong> Due </strong>May 26 at 11:59pm | 100 pts
-                  </p>
-                </div>
-                <div className="col-auto float-end">
-                  <GreenCheckmark />
-                  <IoEllipsisVertical className="fs-4" />
-                </div>
-              </div>
-            </li>
+            {assignments
+              .filter((assignment: any) => assignment.course === cid)
+              .map((assignment: any) => (
+                <li className="wd-lesson list-group-item p-3 ps-1">
+                  <div className="row align-items-center">
+                    <div className="col-auto">
+                      <BsGripVertical className="me-2 fs-3" />
+                      <MdEditNote className="me-2 fs-1 text-success" />
+                    </div>
+                    <div className="col">
+                      <p>
+                        <Link
+                          className="wd-assignment-link nav-link fs-4"
+                          to={`/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}
+                        >
+                          {assignment.title}
+                        </Link>
+                      </p>
+                      <p className="mb-0">
+                        <span className="text-danger">Multiple Modules </span> |
+                        <strong> Not Available until</strong>{" "}
+                        {assignment.available_date} |<strong> Due </strong>
+                        {assignment.due_date}| {assignment.points} pts
+                      </p>
+                    </div>
+                    <div className="col-auto float-end">
+                      <GreenCheckmark />
+                      <IoEllipsisVertical className="fs-4" />
+                    </div>
+                  </div>
+                </li>
+              ))}
           </ul>
         </li>
       </ul>
