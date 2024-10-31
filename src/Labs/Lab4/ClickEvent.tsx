@@ -11,6 +11,9 @@ export default function ClickEvent() {
       <button onClick={hello} id="wd-hello-world-click">
         Hello World!
       </button>
+      <button onClick={() => hello()} id="wd-hello-world-click">
+        Hello World2!
+      </button>
       <button onClick={() => lifeIs("Good!")} id="wd-life-is-good-click">
         Life is Good!
       </button>
