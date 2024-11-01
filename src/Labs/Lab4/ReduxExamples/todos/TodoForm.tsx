@@ -39,7 +39,7 @@ export default function TodoForm() {
         Update
       </button>
       <input
-        defaultValue={todo.title}
+        value={todo.title}
         onChange={(e) =>
           // setTodo({ ...todo, title: e.target.value })
           dispatch(setTodo({ ...todo, title: e.target.value }))

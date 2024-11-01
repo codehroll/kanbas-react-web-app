@@ -1,17 +1,25 @@
 import AssignmentsControls from "./AssignmentsControls";
-import AssignAfterButtons from "./AssignTitleButtons";
+import AssignAfterButtons from "./AssignAfterButtons";
 import { BsGripVertical } from "react-icons/bs";
-import { MdEditNote } from "react-icons/md";
 import { RxTriangleDown } from "react-icons/rx";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import { IoEllipsisVertical } from "react-icons/io5";
-import { useParams } from "react-router";
-import * as db from "../../Database";
+import { FaTrash } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import AssignBeforeButtons from "./AssignBeforeButtons";
+import { deleteAssignment } from "./reducer";
+import DeleteEditor from "./DeleteEditor";
+import { useState } from "react";
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = db.assignments;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { assignment, assignments } = useSelector(
+    (state: any) => state.assignmentsReducer
+  );
+  const [assignmentToDelete, setAssignmentToDelete] = useState<string>("");
 
   return (
     <div id="wd-assignments">
@@ -33,10 +41,7 @@ export default function Assignments() {
               .map((assignment: any) => (
                 <li className="wd-lesson list-group-item p-3 ps-1">
                   <div className="row align-items-center">
-                    <div className="col-auto">
-                      <BsGripVertical className="me-2 fs-3" />
-                      <MdEditNote className="me-2 fs-1 text-success" />
-                    </div>
+                    <AssignBeforeButtons assignmentId={assignment._id} />
                     <div className="col">
                       <p>
                         <Link
@@ -55,7 +60,18 @@ export default function Assignments() {
                         {assignment.points} pts
                       </p>
                     </div>
+
                     <div className="col-auto float-end">
+                      <FaTrash
+                        className="text-danger me-2 mb-1"
+                        data-bs-toggle="modal"
+                        data-bs-target="#wd-del-assignment-dialog"
+                        onClick={() => setAssignmentToDelete(assignment._id)}
+                      />
+                      <DeleteEditor
+                        dialogTitle="Delete Assignment"
+                        assignmentId={assignmentToDelete}
+                      />
                       <GreenCheckmark />
                       <IoEllipsisVertical className="fs-4" />
                     </div>

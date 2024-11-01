@@ -1,13 +1,51 @@
 import { useParams } from "react-router";
-import * as db from "../../Database";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  addAssignment,
+  deleteAssignment,
+  updateAssignment,
+  setAssignment,
+  cancelAssignmentUpdate,
+} from "./reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 export default function AssignmentEditor() {
   const { cid, assignmentId } = useParams();
-  const assignments = db.assignments;
-  const curAssignment = assignments.find(
-    (assignment) => assignment._id === assignmentId
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { assignment, assignments } = useSelector(
+    (state: any) => state.assignmentsReducer
   );
+  const isNewAssignment = assignmentId === "Editor";
+  useEffect(() => {
+    const curAssignment = assignments.find(
+      (assignment: any) => assignment._id === assignmentId
+    );
+    if (curAssignment) {
+      dispatch(setAssignment(curAssignment));
+    } else {
+      dispatch(cancelAssignmentUpdate(assignment));
+    }
+  }, [dispatch, assignmentId]);
 
+  const handleSave = () => {
+    if (isNewAssignment) {
+      const newAssignment = {
+        ...assignment,
+        _id: new Date().getTime().toString(),
+        course: cid,
+      };
+      dispatch(addAssignment(newAssignment));
+    } else {
+      dispatch(updateAssignment(assignment));
+    }
+    navigate(`/Kanbas/Courses/${cid}/Assignments`);
+  };
+
+  const handleCancel = () => {
+    dispatch(cancelAssignmentUpdate(assignment));
+    navigate(`/Kanbas/Courses/${cid}/Assignments`);
+  };
   return (
     <div id="wd-assignments-editor">
       <form>
@@ -17,18 +55,25 @@ export default function AssignmentEditor() {
         <br />
         <input
           id="wd-name"
-          value={curAssignment?.title || ""}
+          value={assignment?.title}
           className="form-control"
+          onChange={(e) =>
+            dispatch(setAssignment({ ...assignment, title: e.target.value }))
+          }
         />
         <br />
         <textarea
+          value={assignment?.description}
           id="wd-description"
           className="form-control"
           cols={40}
           rows={12}
-        >
-          {curAssignment?.description || ""}
-        </textarea>
+          onChange={(e) =>
+            dispatch(
+              setAssignment({ ...assignment, description: e.target.value })
+            )
+          }
+        ></textarea>
         <br />
         <div className="mb-3 row">
           <label
@@ -42,7 +87,12 @@ export default function AssignmentEditor() {
               id="wd-points"
               type="text"
               className="form-control"
-              value={curAssignment?.points || ""}
+              value={assignment?.points}
+              onChange={(e) =>
+                dispatch(
+                  setAssignment({ ...assignment, points: e.target.value })
+                )
+              }
             />
           </div>
         </div>
@@ -190,12 +240,17 @@ export default function AssignmentEditor() {
               type="datetime-local"
               id="wd-due-date"
               className="form-control"
-              value={
-                curAssignment?.due_date
-                  ? new Date(curAssignment.due_date * 1000)
-                      .toISOString()
-                      .slice(0, 16)
-                  : ""
+              value={new Date(assignment.due_date * 1000)
+                .toISOString()
+                .slice(0, 16)}
+              onChange={(e) =>
+                dispatch(
+                  setAssignment({
+                    ...assignment,
+                    // convert ISO 8601 date and time into Unix timestamp
+                    due_date: new Date(e.target.value).getTime() / 1000,
+                  })
+                )
               }
             />
             <div className="row">
@@ -210,12 +265,17 @@ export default function AssignmentEditor() {
                   id="wd-available-from"
                   type="datetime-local"
                   className="form-control mb-3"
-                  value={
-                    curAssignment?.available_date
-                      ? new Date(curAssignment.available_date * 1000)
-                          .toISOString()
-                          .slice(0, 16)
-                      : ""
+                  value={new Date(assignment.available_date * 1000)
+                    .toISOString()
+                    .slice(0, 16)}
+                  onChange={(e) =>
+                    dispatch(
+                      setAssignment({
+                        ...assignment,
+                        available_date:
+                          new Date(e.target.value).getTime() / 1000,
+                      })
+                    )
                   }
                 />
               </div>
@@ -230,12 +290,17 @@ export default function AssignmentEditor() {
                   id="wd-available-until"
                   type="datetime-local"
                   className="form-control mb-3"
-                  value={
-                    curAssignment?.available_date
-                      ? new Date(curAssignment.due_date * 1000)
-                          .toISOString()
-                          .slice(0, 16)
-                      : ""
+                  value={new Date(assignment.due_date * 1000)
+                    .toISOString()
+                    .slice(0, 16)}
+                  onChange={(e) =>
+                    dispatch(
+                      setAssignment({
+                        ...assignment,
+                        available_date:
+                          new Date(e.target.value).getTime() / 1000,
+                      })
+                    )
                   }
                 />
               </div>
@@ -246,8 +311,12 @@ export default function AssignmentEditor() {
         <hr />
         <div className="float-end">
           <Link to={`/Kanbas/Courses/${cid}/Assignments/`}>
-            <button className="btn btn-secondary me-2">Cancel </button>
-            <button className="btn btn-danger">Save </button>{" "}
+            <button onClick={handleCancel} className="btn btn-secondary me-2">
+              Cancel{" "}
+            </button>
+            <button onClick={handleSave} className="btn btn-danger">
+              Save{" "}
+            </button>{" "}
           </Link>
         </div>
       </form>

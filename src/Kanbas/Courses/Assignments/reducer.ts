@@ -2,6 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import { assignments } from "../../Database";
 const initialState = {
   assignments: assignments,
+  assignment: {
+    _id: "",
+    title: "new assignment",
+    description: "new assignment description",
+    points: 0,
+    course: "",
+    due_date: Date.now() / 1000,
+    available_date: Date.now() / 1000,
+  },
 };
 const assignmentsSlice = createSlice({
   name: "assignments",
@@ -9,7 +18,7 @@ const assignmentsSlice = createSlice({
   reducers: {
     addAssignment: (state, { payload: assignment }) => {
       const newAssignment: any = {
-        _id: new Date().getTime().toString(),
+        _id: assignment._id,
         title: assignment.title,
         course: assignment.course,
         description: assignment.description,
@@ -19,23 +28,33 @@ const assignmentsSlice = createSlice({
       };
       state.assignments = [...state.assignments, newAssignment] as any;
     },
+
     deleteAssignment: (state, { payload: assignmentId }) => {
       state.assignments = state.assignments.filter(
         (a: any) => a._id !== assignmentId
       );
     },
+
     updateAssignment: (state, { payload: assignment }) => {
       state.assignments = state.assignments.map((a: any) =>
         a._id === assignment._id ? assignment : a
       ) as any;
     },
-    // editModule: (state, { payload: moduleId }) => {
-    //   state.modules = state.modules.map((m: any) =>
-    //     m._id === moduleId ? { ...m, editing: true } : m
-    //   ) as any;
-    // },
+
+    setAssignment: (state, action) => {
+      state.assignment = action.payload;
+    },
+
+    cancelAssignmentUpdate: (state, action) => {
+      state.assignment = initialState.assignment;
+    },
   },
 });
-export const { addAssignment, deleteAssignment, updateAssignment } =
-  assignmentsSlice.actions;
+export const {
+  addAssignment,
+  deleteAssignment,
+  updateAssignment,
+  setAssignment,
+  cancelAssignmentUpdate,
+} = assignmentsSlice.actions;
 export default assignmentsSlice.reducer;
