@@ -20,7 +20,7 @@ export default function Assignments() {
     (state: any) => state.assignmentsReducer
   );
   const [assignmentToDelete, setAssignmentToDelete] = useState<string>("");
-
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   return (
     <div id="wd-assignments">
       <AssignmentsControls />
@@ -62,12 +62,14 @@ export default function Assignments() {
                     </div>
 
                     <div className="col-auto float-end">
-                      <FaTrash
-                        className="text-danger me-2 mb-1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#wd-del-assignment-dialog"
-                        onClick={() => setAssignmentToDelete(assignment._id)}
-                      />
+                      {currentUser.role === "FACULTY" && (
+                        <FaTrash
+                          className="text-danger me-2 mb-1"
+                          data-bs-toggle="modal"
+                          data-bs-target="#wd-del-assignment-dialog"
+                          onClick={() => setAssignmentToDelete(assignment._id)}
+                        />
+                      )}
                       <DeleteEditor
                         dialogTitle="Delete Assignment"
                         assignmentId={assignmentToDelete}

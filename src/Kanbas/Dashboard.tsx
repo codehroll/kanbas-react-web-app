@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import * as db from "./Database";
-import React, { useState } from "react";
 import { useSelector } from "react-redux";
 export default function Dashboard({
   courses,
@@ -22,7 +21,19 @@ export default function Dashboard({
 
   return (
     <div id="wd-dashboard">
-      <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+      <h1 id="wd-dashboard-title">Dashboard</h1>
+      <hr />
+      {currentUser.role === "STUDENT" && (
+        <button
+          className="btn btn-primary float-end"
+          id="wd-enrollments-course-click"
+          // onClick={addNewCourse}
+        >
+          Enrollments
+        </button>
+      )}
+
+      {/* for Faculty, implement add + update button, and edit area*/}
       {currentUser.role === "FACULTY" && (
         <h5>
           New Course
@@ -81,7 +92,12 @@ export default function Dashboard({
                     to={`/Kanbas/Courses/${course._id}/Home`}
                     className="wd-dashboard-course-link text-decoration-none text-dark"
                   >
-                    <img src="/images/reactjs.jpg" width="100%" height={160} />
+                    <img
+                      src="/images/reactjs.jpg"
+                      alt="reactjs course"
+                      width="100%"
+                      height={160}
+                    />
                     <div className="card-body">
                       <h5 className="wd-dashboard-course-title card-title">
                         {course.name}
@@ -115,6 +131,30 @@ export default function Dashboard({
                           className="btn btn-warning me-2 float-end"
                         >
                           Edit
+                        </button>
+                      )}
+                      {currentUser.role === "STUDENT" && (
+                        <button
+                          // onClick={(event) => {
+                          //   event.preventDefault();
+                          //   deleteCourse(course._id);
+                          // }}
+                          className="btn btn-danger float-end"
+                          id="wd-unenroll-course-click"
+                        >
+                          Unenroll
+                        </button>
+                      )}
+                      {currentUser.role === "STUDENT" && (
+                        <button
+                          // onClick={(event) => {
+                          //   event.preventDefault();
+                          //   deleteCourse(course._id);
+                          // }}
+                          className="btn btn-success float-end"
+                          id="wd-enroll-course-click"
+                        >
+                          Enroll
                         </button>
                       )}
                     </div>
