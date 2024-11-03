@@ -2,7 +2,6 @@ import { useParams } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
 import {
   addAssignment,
-  deleteAssignment,
   updateAssignment,
   setAssignment,
   cancelAssignmentUpdate,
