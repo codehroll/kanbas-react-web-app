@@ -5,20 +5,15 @@ import { RxTriangleDown } from "react-icons/rx";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import AssignBeforeButtons from "./AssignBeforeButtons";
-import { deleteAssignment } from "./reducer";
 import DeleteEditor from "./DeleteEditor";
 import { useState } from "react";
 export default function Assignments() {
   const { cid } = useParams();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { assignment, assignments } = useSelector(
-    (state: any) => state.assignmentsReducer
-  );
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const [assignmentToDelete, setAssignmentToDelete] = useState<string>("");
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   return (

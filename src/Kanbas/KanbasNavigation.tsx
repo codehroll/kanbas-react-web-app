@@ -26,7 +26,7 @@ export default function KanbasNavigation() {
         target="_blank"
         className="list-group-item bg-black border-0"
       >
-        <img src="./images/NEU.png" width="75px" />
+        <img src="./images/NEU.png" alt="" width="75px" />
       </a>
       <Link
         to="/Kanbas/Account"
@@ -62,57 +62,6 @@ export default function KanbasNavigation() {
           {link.label}
         </Link>
       ))}
-
-      {/* <Link
-        to="/Kanbas/Dashboard"
-        id="wd-dashboard-link"
-        className="list-group-item text-center border-0
-                   bg-white text-danger"
-      >
-        <AiOutlineDashboard className="fs-1 text-danger" />
-        <br />
-        Dashboard
-      </Link>
-      <Link
-        to="/Kanbas/Courses"
-        id="wd-course-link"
-        className="list-group-item text-white
-                   bg-black text-center border-0"
-      >
-        <LiaBookSolid className="fs-1 text-danger" />
-        <br />
-        Courses
-      </Link>
-      <Link
-        to="/Kanbas/Calendar"
-        id="wd-calendar-link"
-        className="list-group-item text-white
-                   bg-black text-center border-0"
-      >
-        <IoCalendarOutline className="fs-1 text-danger" />
-        <br />
-        Calendar
-      </Link>
-      <Link
-        to="/Kanbas/Inbox"
-        id="wd-inbox-link"
-        className="list-group-item text-white
-                   bg-black text-center border-0"
-      >
-        <FaInbox className="fs-1 text-danger" />
-        <br />
-        Inbox
-      </Link> */}
-      {/* <Link
-        to="/Labs"
-        id="wd-labs-link"
-        className="list-group-item text-white
-                   bg-black text-center border-0"
-      >
-        <LiaCogSolid className="fs-1 text-danger" />
-        <br />
-        Labs
-      </Link> */}
     </div>
   );
 }

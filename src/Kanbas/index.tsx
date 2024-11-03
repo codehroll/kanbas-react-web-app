@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router";
 import Account from "./Account";
 import Dashboard from "./Dashboard";
-import KanbasNavigation from "./Navigation";
+import KanbasNavigation from "./KanbasNavigation";
 import Courses from "./Courses";
 import "./styles.css";
 import * as db from "./Database";
@@ -18,7 +18,7 @@ export default function Kanbas() {
     number: "New Number",
     startDate: "2023-09-10",
     endDate: "2023-12-15",
-    // image: "/images/reactjs.jpg",
+    image: "/images/reactjs.jpg",
     description: "New Description",
   });
   const addNewCourse = () => {
@@ -41,6 +41,7 @@ export default function Kanbas() {
       })
     );
   };
+
   return (
     <Provider store={store}>
       <div id="wd-kanbas">
