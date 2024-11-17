@@ -131,7 +131,11 @@ export default function Dashboard({
                 )
               )
           ).map((course) => (
-            <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+            <div
+              className="wd-dashboard-course col"
+              style={{ width: "300px" }}
+              key={course._id}
+            >
               <div className="card rounded-3 overflow-hidden">
                 <Link
                   to={
