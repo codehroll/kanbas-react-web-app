@@ -121,98 +121,99 @@ export default function Dashboard({
       <hr />
       <div id="wd-dashboard-courses" className="row">
         <div className="row row-cols-1 row-cols-md-5 g-4">
-          {(showAllCourses
-            ? courses
-            : courses.filter((course) =>
-                enrollments.some(
-                  (enrollment: any) =>
-                    enrollment.user === currentUser._id &&
-                    enrollment.course === course._id
-                )
-              )
-          ).map((course) => (
-            <div
-              className="wd-dashboard-course col"
-              style={{ width: "300px" }}
-              key={course._id}
-            >
-              <div className="card rounded-3 overflow-hidden">
-                <Link
-                  to={
-                    currentUser.role === "STUDENT" &&
-                    showAllCourses &&
-                    !enrollmentStatus[course._id]
-                      ? `/Kanbas/Dashboard`
-                      : `/Kanbas/Courses/${course._id}/Home`
-                  }
-                  className="wd-dashboard-course-link text-decoration-none text-dark"
-                >
-                  <img
-                    src="/images/reactjs.jpg"
-                    alt="reactjs course"
-                    width="100%"
-                    height={160}
-                  />
-                  <div className="card-body">
-                    <h5 className="wd-dashboard-course-title card-title">
-                      {course.name}
-                    </h5>
-                    <p
-                      className="wd-dashboard-course-title card-text overflow-y-hidden"
-                      style={{ maxHeight: 100 }}
-                    >
-                      {course.description}
-                    </p>
-                    <button className="btn btn-primary"> Go </button>
-                    {currentUser.role === "FACULTY" && (
-                      <button
-                        onClick={(event) => {
-                          event.preventDefault();
-                          deleteCourse(course._id);
-                        }}
-                        className="btn btn-danger float-end"
-                        id="wd-delete-course-click"
+          {courses
+            // showAllCourses
+            // ? courses
+            // : courses.filter((course) =>
+            //     enrollments.some(
+            //       (enrollment: any) =>
+            //         enrollment.user === currentUser._id &&
+            //         enrollment.course === course._id
+            //     )
+            //   )
+            .map((course) => (
+              <div
+                className="wd-dashboard-course col"
+                style={{ width: "300px" }}
+                key={course._id}
+              >
+                <div className="card rounded-3 overflow-hidden">
+                  <Link
+                    to={
+                      currentUser.role === "STUDENT" &&
+                      showAllCourses &&
+                      !enrollmentStatus[course._id]
+                        ? `/Kanbas/Dashboard`
+                        : `/Kanbas/Courses/${course._id}/Home`
+                    }
+                    className="wd-dashboard-course-link text-decoration-none text-dark"
+                  >
+                    <img
+                      src="/images/reactjs.jpg"
+                      alt="reactjs course"
+                      width="100%"
+                      height={160}
+                    />
+                    <div className="card-body">
+                      <h5 className="wd-dashboard-course-title card-title">
+                        {course.name}
+                      </h5>
+                      <p
+                        className="wd-dashboard-course-title card-text overflow-y-hidden"
+                        style={{ maxHeight: 100 }}
                       >
-                        Delete
-                      </button>
-                    )}
-                    {currentUser.role === "FACULTY" && (
-                      <button
-                        id="wd-edit-course-click"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          setCourse(course);
-                        }}
-                        className="btn btn-warning me-2 float-end"
-                      >
-                        Edit
-                      </button>
-                    )}
-                    {currentUser.role === "STUDENT" && showAllCourses && (
-                      <button
-                        onClick={(event) => {
-                          event.preventDefault();
-                          handleEnrollmentToggle(course._id);
-                        }}
-                        className={`btn float-end ${
-                          enrollmentStatus[course._id]
-                            ? "btn-danger"
-                            : "btn-success"
-                        }`}
-                        id={
-                          enrollmentStatus[course._id]
-                            ? "wd-unenroll-course-click"
-                            : "wd-enroll-course-click"
-                        }
-                      >
-                        {enrollmentStatus[course._id] ? "Unenroll" : "Enroll"}
-                      </button>
-                    )}
-                  </div>
-                </Link>
+                        {course.description}
+                      </p>
+                      <button className="btn btn-primary"> Go </button>
+                      {currentUser.role === "FACULTY" && (
+                        <button
+                          onClick={(event) => {
+                            event.preventDefault();
+                            deleteCourse(course._id);
+                          }}
+                          className="btn btn-danger float-end"
+                          id="wd-delete-course-click"
+                        >
+                          Delete
+                        </button>
+                      )}
+                      {currentUser.role === "FACULTY" && (
+                        <button
+                          id="wd-edit-course-click"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            setCourse(course);
+                          }}
+                          className="btn btn-warning me-2 float-end"
+                        >
+                          Edit
+                        </button>
+                      )}
+                      {currentUser.role === "STUDENT" && showAllCourses && (
+                        <button
+                          onClick={(event) => {
+                            event.preventDefault();
+                            handleEnrollmentToggle(course._id);
+                          }}
+                          className={`btn float-end ${
+                            enrollmentStatus[course._id]
+                              ? "btn-danger"
+                              : "btn-success"
+                          }`}
+                          id={
+                            enrollmentStatus[course._id]
+                              ? "wd-unenroll-course-click"
+                              : "wd-enroll-course-click"
+                          }
+                        >
+                          {enrollmentStatus[course._id] ? "Unenroll" : "Enroll"}
+                        </button>
+                      )}
+                    </div>
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>

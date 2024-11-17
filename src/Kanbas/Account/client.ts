@@ -34,9 +34,16 @@ export const signout = async () => {
   return response.data;
 };
 
-// export const findMyCourses = async () => {
-//   const { data } = await axiosWithCredentials.get(
-//     `${USERS_API}/current/courses`
-//   );
-//   return data;
-// };
+export const findMyCourses = async () => {
+  const { data } = await axiosWithCredentials.get(
+    `${USERS_API}/current/courses`
+  );
+  return data;
+};
+
+export const findMyEnrollments = async () => {
+  const { data } = await axiosWithCredentials.get(
+    `${USERS_API}/current/enrollments`
+  );
+  return data;
+};
