@@ -5,6 +5,7 @@ import KanbasNavigation from "./KanbasNavigation";
 import Courses from "./Courses";
 import "./styles.css";
 import * as userClient from "./Account/client";
+import * as courseClient from "./Courses/client";
 
 import { useEffect, useState } from "react";
 
@@ -37,16 +38,40 @@ export default function Kanbas() {
     image: "/images/reactjs.jpg",
     description: "New Description",
   });
-  const addNewCourse = () => {
-    setCourses([
-      ...courses,
-      { ...course, _id: new Date().getTime().toString() },
-    ]);
+  // const addNewCourse = () => {
+  //   setCourses([
+  //     ...courses,
+  //     { ...course, _id: new Date().getTime().toString() },
+  //   ]);
+  // };
+  const addNewCourse = async () => {
+    const newCourse = await userClient.createCourse(course);
+    setCourses([...courses, newCourse]);
   };
-  const deleteCourse = (courseId: any) => {
+
+  // const deleteCourse = (courseId: any) => {
+  //   setCourses(courses.filter((course) => course._id !== courseId));
+  // };
+
+  const deleteCourse = async (courseId: string) => {
+    const status = await courseClient.deleteCourse(courseId);
     setCourses(courses.filter((course) => course._id !== courseId));
   };
-  const updateCourse = () => {
+
+  // const updateCourse = () => {
+  //   setCourses(
+  //     courses.map((c) => {
+  //       if (c._id === course._id) {
+  //         return course;
+  //       } else {
+  //         return c;
+  //       }
+  //     })
+  //   );
+  // };
+
+  const updateCourse = async () => {
+    await courseClient.updateCourse(course);
     setCourses(
       courses.map((c) => {
         if (c._id === course._id) {
