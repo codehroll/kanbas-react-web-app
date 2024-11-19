@@ -21,6 +21,7 @@ export default function Modules() {
   const { cid } = useParams();
   const [moduleName, setModuleName] = useState("");
   const { modules } = useSelector((state: any) => state.modulesReducer);
+  const dispatch = useDispatch();
   const fetchModules = async () => {
     const modules = await coursesClient.findModulesForCourse(cid as string);
     dispatch(setModules(modules));
@@ -29,7 +30,6 @@ export default function Modules() {
     fetchModules();
   }, []);
 
-  const dispatch = useDispatch();
   const createModuleForCourse = async () => {
     if (!cid) return;
     const newModule = { name: moduleName, course: cid };

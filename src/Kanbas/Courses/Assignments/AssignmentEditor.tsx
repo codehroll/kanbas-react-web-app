@@ -2,12 +2,17 @@ import { useParams } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
 import {
   addAssignment,
+  deleteAssignment,
   updateAssignment,
   setAssignment,
   cancelAssignmentUpdate,
+  setAssignments,
 } from "./reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import * as coursesClient from "../client";
+import * as assignmentsClient from "./client";
+
 export default function AssignmentEditor() {
   const { cid, assignmentId } = useParams();
   const dispatch = useDispatch();
@@ -16,6 +21,7 @@ export default function AssignmentEditor() {
     (state: any) => state.assignmentsReducer
   );
   const isNewAssignment = assignmentId === "Editor";
+
   useEffect(() => {
     const curAssignment = assignments.find(
       (assignment: any) => assignment._id === assignmentId
@@ -27,16 +33,32 @@ export default function AssignmentEditor() {
     }
   }, [dispatch, assignmentId]);
 
+  const createAssignmentForCourse = async () => {
+    if (!cid) return;
+    const newAssignment = { ...assignment, course: cid };
+    const new_assignment = await coursesClient.createAssignmentForCourse(
+      cid,
+      newAssignment
+    );
+    dispatch(addAssignment(new_assignment));
+  };
+
+  const saveAssignment = async (assignment: any) => {
+    await assignmentsClient.updateAssignment(assignment);
+    dispatch(updateAssignment(assignment));
+  };
   const handleSave = () => {
     if (isNewAssignment) {
-      const newAssignment = {
-        ...assignment,
-        _id: new Date().getTime().toString(),
-        course: cid,
-      };
-      dispatch(addAssignment(newAssignment));
+      createAssignmentForCourse();
+      // const newAssignment = {
+      //   ...assignment,
+      //   _id: new Date().getTime().toString(),
+      //   course: cid,
+      // };
+      // dispatch(addAssignment(newAssignment));
     } else {
-      dispatch(updateAssignment(assignment));
+      saveAssignment(assignment);
+      // dispatch(updateAssignment(assignment));
     }
     navigate(`/Kanbas/Courses/${cid}/Assignments`);
   };
