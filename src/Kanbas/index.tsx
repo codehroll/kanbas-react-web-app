@@ -8,13 +8,17 @@ import * as userClient from "./Account/client";
 import * as courseClient from "./Courses/client";
 
 import { useEffect, useState } from "react";
-
 import ProtectedRoute from "./Account/ProtectedRoute";
 import Session from "./Account/Session";
 import { useSelector } from "react-redux";
+
 export default function Kanbas() {
+  // current user enrolled coureses
   const [courses, setCourses] = useState<any[]>([]);
+  // all the courses in database
+  const [allCourses, setAllCourses] = useState<any[]>([]);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+  // fetch current user enrolled coureses
   const fetchCourses = async () => {
     let courses = [];
     try {
@@ -28,6 +32,30 @@ export default function Kanbas() {
   useEffect(() => {
     fetchCourses();
   }, [currentUser]);
+
+  // fetch all the courses in database
+  const fetchAllCourses = async () => {
+    let allCourses = [];
+    try {
+      allCourses = await courseClient.fetchAllCourses();
+    } catch (error) {
+      console.error(error);
+    }
+    setAllCourses(allCourses);
+  };
+  useEffect(() => {
+    fetchAllCourses();
+  }, [currentUser]);
+
+  const enrollCurrentCourse = async (userId: string, courseId: string) => {
+    await userClient.addEnrollment(userId, courseId);
+    fetchCourses();
+  };
+
+  const unenrollCurrentCourse = async (userId: string, courseId: string) => {
+    await userClient.deleteEnrollment(userId, courseId);
+    fetchCourses();
+  };
 
   const [course, setCourse] = useState<any>({
     _id: "1234",
@@ -96,12 +124,15 @@ export default function Kanbas() {
               element={
                 <ProtectedRoute>
                   <Dashboard
+                    allCourses={allCourses}
                     courses={courses}
                     course={course}
                     setCourse={setCourse}
                     addNewCourse={addNewCourse}
                     deleteCourse={deleteCourse}
                     updateCourse={updateCourse}
+                    enrollCurrentCourse={enrollCurrentCourse}
+                    unenrollCurrentCourse={unenrollCurrentCourse}
                   />
                 </ProtectedRoute>
               }

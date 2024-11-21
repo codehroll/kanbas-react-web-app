@@ -1,58 +1,84 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { addEnrollment, unEnrollment } from "./enrollmentsReducer";
+import { useEffect, useState } from "react";
+import {
+  setEnrollments,
+  addEnrollment,
+  unEnrollment,
+} from "./enrollmentsReducer";
+import * as userClient from "../Account/client";
+// import * as coursesClient from "../Courses/client";
+
 export default function Dashboard({
+  allCourses,
   courses,
   course,
   setCourse,
   addNewCourse,
   deleteCourse,
   updateCourse,
+  enrollCurrentCourse,
+  unenrollCurrentCourse,
 }: {
+  allCourses: any[];
   courses: any[];
   course: any;
   setCourse: (course: any) => void;
   addNewCourse: () => void;
   deleteCourse: (course: any) => void;
   updateCourse: () => void;
+  enrollCurrentCourse: (userId: string, courseId: string) => void;
+  unenrollCurrentCourse: (userId: string, courseId: string) => void;
 }) {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
   const [showAllCourses, setShowAllCourses] = useState(false);
+
+  const fetchEnrollments = async () => {
+    const curUserEnrollments = await userClient.findMyEnrollments();
+    dispatch(setEnrollments(curUserEnrollments));
+  };
+  useEffect(() => {
+    fetchEnrollments();
+  }, [currentUser, courses]);
+
   const handleToggleEnrollments = () => {
     setShowAllCourses((prev) => !prev);
   };
+
   // create an object that maps course IDs to their enrollment status (true or false). This requires accumulating information into a single object
   const [enrollmentStatus, setEnrollmentStatus] = useState(
-    courses.reduce((status, course) => {
+    allCourses.reduce((status, course) => {
       const enrolled = enrollments.some(
         (enrollment: any) =>
-          enrollment.user === currentUser._id &&
+          // enrollment.user === currentUser._id &&
           enrollment.course === course._id
       );
       return { ...status, [course._id]: enrolled };
     }, {})
   );
 
-  const handleEnrollmentToggle = (courseId: string) => {
+  const handleEnrollmentToggle = (userId: string, courseId: string) => {
     const isEnrolled = enrollmentStatus[courseId];
 
     if (isEnrolled) {
       // Find the enrollment ID to remove
       const curEnrollment = enrollments.find(
         (enrollment: any) =>
-          enrollment.user === currentUser._id && enrollment.course === courseId
+          // enrollment.user === currentUser._id &&
+          enrollment.course === courseId
       );
       if (curEnrollment) {
+        unenrollCurrentCourse(userId, courseId);
         dispatch(unEnrollment(curEnrollment._id));
       }
     } else {
       // Add new enrollment
+      enrollCurrentCourse(userId, courseId);
       dispatch(
         addEnrollment({
-          user: currentUser._id,
+          user: userId,
           course: courseId,
         })
       );
@@ -121,16 +147,14 @@ export default function Dashboard({
       <hr />
       <div id="wd-dashboard-courses" className="row">
         <div className="row row-cols-1 row-cols-md-5 g-4">
-          {courses
-            // showAllCourses
-            // ? courses
-            // : courses.filter((course) =>
-            //     enrollments.some(
-            //       (enrollment: any) =>
-            //         enrollment.user === currentUser._id &&
-            //         enrollment.course === course._id
-            //     )
+          {(showAllCourses ? allCourses : courses)
+            // .filter((course) =>
+            //   enrollments.some(
+            //     (enrollment: any) =>
+            //       enrollment.user === currentUser._id &&
+            //       enrollment.course === course._id
             //   )
+            // ) */
             .map((course) => (
               <div
                 className="wd-dashboard-course col"
@@ -193,13 +217,14 @@ export default function Dashboard({
                         <button
                           onClick={(event) => {
                             event.preventDefault();
-                            handleEnrollmentToggle(course._id);
+                            handleEnrollmentToggle(currentUser._id, course._id);
                           }}
-                          className={`btn float-end ${
-                            enrollmentStatus[course._id]
-                              ? "btn-danger"
-                              : "btn-success"
-                          }`}
+                          className={`btn float-end 
+                            ${
+                              enrollmentStatus[course._id]
+                                ? "btn-danger"
+                                : "btn-success"
+                            }`}
                           id={
                             enrollmentStatus[course._id]
                               ? "wd-unenroll-course-click"

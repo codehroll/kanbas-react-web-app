@@ -55,3 +55,15 @@ export const createCourse = async (course: any) => {
   );
   return data;
 };
+
+export const deleteEnrollment = async (userId: string, courseId: string) => {
+  await axiosWithCredentials.delete(
+    `${USERS_API}/${userId}/enrollments/${courseId}`
+  );
+};
+
+export const addEnrollment = async (userId: string, courseId: string) => {
+  await axiosWithCredentials.post(
+    `${USERS_API}/${userId}/enrollments/${courseId}`
+  );
+};
