@@ -18,6 +18,15 @@ export default function Kanbas() {
   // all the courses in database
   const [allCourses, setAllCourses] = useState<any[]>([]);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const [course, setCourse] = useState<any>({
+    _id: "1234",
+    name: "New Course",
+    number: "New Number",
+    startDate: "2023-09-10",
+    endDate: "2023-12-15",
+    image: "/images/reactjs.jpg",
+    description: "New Description",
+  });
   // fetch current user enrolled coureses
   const fetchCourses = async () => {
     let courses = [];
@@ -57,15 +66,6 @@ export default function Kanbas() {
     fetchCourses();
   };
 
-  const [course, setCourse] = useState<any>({
-    _id: "1234",
-    name: "New Course",
-    number: "New Number",
-    startDate: "2023-09-10",
-    endDate: "2023-12-15",
-    image: "/images/reactjs.jpg",
-    description: "New Description",
-  });
   // const addNewCourse = () => {
   //   setCourses([
   //     ...courses,

@@ -71,17 +71,17 @@ export default function Dashboard({
       );
       if (curEnrollment) {
         unenrollCurrentCourse(userId, courseId);
-        dispatch(unEnrollment(curEnrollment._id));
+        // dispatch(unEnrollment(curEnrollment._id));
       }
     } else {
       // Add new enrollment
       enrollCurrentCourse(userId, courseId);
-      dispatch(
-        addEnrollment({
-          user: userId,
-          course: courseId,
-        })
-      );
+      // dispatch(
+      //   addEnrollment({
+      //     user: userId,
+      //     course: courseId,
+      //   })
+      // );
     }
 
     // Update the local enrollment status for UI update
