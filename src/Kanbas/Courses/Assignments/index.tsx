@@ -71,7 +71,7 @@ export default function Assignments() {
                       </p>
                       <p className="mb-0">
                         <span className="text-danger">Multiple Modules </span> |
-                        <strong> Not Available until</strong>{" "}
+                        <strong> Not Available until</strong>
                         {formatDateToCustomString(assignment.available_date)} |
                         <strong> Due </strong>
                         {formatDateToCustomString(assignment.due_date)}|{" "}

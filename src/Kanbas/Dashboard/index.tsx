@@ -17,6 +17,9 @@ export default function Dashboard({
   addNewCourse,
   deleteCourse,
   updateCourse,
+  // enrolling,
+  // setEnrolling,
+  // updateEnrollment,
   enrollCurrentCourse,
   unenrollCurrentCourse,
 }: {
@@ -27,6 +30,9 @@ export default function Dashboard({
   addNewCourse: () => void;
   deleteCourse: (course: any) => void;
   updateCourse: () => void;
+  // enrolling: boolean;
+  // setEnrolling: (enrolling: boolean) => void;
+  // updateEnrollment: (courseId: string, enrolled: boolean) => void;
   enrollCurrentCourse: (userId: string, courseId: string) => void;
   unenrollCurrentCourse: (userId: string, courseId: string) => void;
 }) {
@@ -41,33 +47,41 @@ export default function Dashboard({
   };
   useEffect(() => {
     fetchEnrollments();
-  }, [currentUser, courses]);
+  }, [currentUser, courses, allCourses]);
 
   const handleToggleEnrollments = () => {
     setShowAllCourses((prev) => !prev);
   };
+  // const eids = enrollments.map((e: any) => e.course);
 
+  // console.log("[HD]" + "enrollments: " + eids);
+  type EnrollmentStatus = { [key: string]: boolean };
   // create an object that maps course IDs to their enrollment status (true or false). This requires accumulating information into a single object
-  const [enrollmentStatus, setEnrollmentStatus] = useState(
-    allCourses.reduce((status, course) => {
-      const enrolled = enrollments.some(
-        (enrollment: any) =>
-          // enrollment.user === currentUser._id &&
-          enrollment.course === course._id
-      );
-      return { ...status, [course._id]: enrolled };
-    }, {})
+  const [enrollmentStatus, setEnrollmentStatus] = useState<EnrollmentStatus>(
+    {}
   );
+  useEffect(() => {
+    if (allCourses && enrollments) {
+      const initialStatus = allCourses.reduce((status, curCourse) => {
+        const enrolled = enrollments.some(
+          (enrollment: any) => enrollment.course._id === curCourse._id
+        );
+        console.log(curCourse._id, enrolled);
+        return { ...status, [curCourse._id]: enrolled };
+      }, {});
+      setEnrollmentStatus(initialStatus);
+    }
+  }, [allCourses, enrollments]);
 
   const handleEnrollmentToggle = (userId: string, courseId: string) => {
     const isEnrolled = enrollmentStatus[courseId];
-
+    // console.log("[HD]" + "course id: " + courseId + " status: " + isEnrolled);
     if (isEnrolled) {
       // Find the enrollment ID to remove
       const curEnrollment = enrollments.find(
         (enrollment: any) =>
           // enrollment.user === currentUser._id &&
-          enrollment.course === courseId
+          enrollment.course._id === courseId
       );
       if (curEnrollment) {
         unenrollCurrentCourse(userId, courseId);
@@ -93,7 +107,15 @@ export default function Dashboard({
 
   return (
     <div id="wd-dashboard">
-      <h1 id="wd-dashboard-title">Dashboard</h1>
+      <h1 id="wd-dashboard-title">
+        Dashboard
+        {/* <button
+          onClick={() => setEnrolling(!enrolling)}
+          className="float-end btn btn-primary"
+        >
+          {enrolling ? "My Courses" : "All Courses"}
+        </button> */}
+      </h1>
       <hr />
       {currentUser.role === "STUDENT" && (
         <button
@@ -105,8 +127,8 @@ export default function Dashboard({
         </button>
       )}
 
-      {/* for Faculty, implement add + update button, and edit area*/}
-      {currentUser.role === "FACULTY" && (
+      {/* for Faculty/ADMIN, implement add + update button, and edit area*/}
+      {(currentUser.role === "FACULTY" || currentUser.role === "ADMIN") && (
         <h5>
           New Course
           <button
@@ -125,14 +147,14 @@ export default function Dashboard({
           </button>
         </h5>
       )}
-      {currentUser.role === "FACULTY" && (
+      {(currentUser.role === "FACULTY" || currentUser.role === "ADMIN") && (
         <input
           value={course.name}
           className="form-control mb-2"
           onChange={(e) => setCourse({ ...course, name: e.target.value })}
         />
       )}
-      {currentUser.role === "FACULTY" && (
+      {(currentUser.role === "FACULTY" || currentUser.role === "ADMIN") && (
         <textarea
           value={course.description}
           className="form-control"
@@ -180,6 +202,20 @@ export default function Dashboard({
                     />
                     <div className="card-body">
                       <h5 className="wd-dashboard-course-title card-title">
+                        {/* {enrolling && (
+                          <button
+                            onClick={(event) => {
+                              event.preventDefault();
+                              updateEnrollment(course._id, !course.enrolled);
+                            }}
+                            className={`btn ${
+                              course.enrolled ? "btn-danger" : "btn-success"
+                            } float-end`}
+                          >
+                            {course.enrolled ? "Unenroll" : "Enroll"}
+                          </button>
+                        )} */}
+
                         {course.name}
                       </h5>
                       <p
@@ -189,7 +225,8 @@ export default function Dashboard({
                         {course.description}
                       </p>
                       <button className="btn btn-primary"> Go </button>
-                      {currentUser.role === "FACULTY" && (
+                      {(currentUser.role === "FACULTY" ||
+                        currentUser.role === "ADMIN") && (
                         <button
                           onClick={(event) => {
                             event.preventDefault();
@@ -201,7 +238,8 @@ export default function Dashboard({
                           Delete
                         </button>
                       )}
-                      {currentUser.role === "FACULTY" && (
+                      {(currentUser.role === "FACULTY" ||
+                        currentUser.role === "ADMIN") && (
                         <button
                           id="wd-edit-course-click"
                           onClick={(event) => {
