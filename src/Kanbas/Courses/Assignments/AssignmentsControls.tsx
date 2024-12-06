@@ -20,7 +20,7 @@ export default function AssignmentsControls() {
           />
         </div>
       </div>
-      {currentUser.role === "FACULTY" && (
+      {(currentUser.role === "FACULTY" || currentUser.role === "ADMIN") && (
         <div className="float-end">
           <Link to={"./Editor"}>
             <button

@@ -6,6 +6,8 @@ import PeopleDetails from "./Details";
 import { Link } from "react-router-dom";
 import * as coursesClient from "../client";
 
+// The component expects a prop named users, but Defaults to an empty array ([]) if users is not provided.
+// Declares users as optional (users?:), meaning it’s not mandatory to pass this prop.
 export default function PeopleTable({ users = [] }: { users?: any[] }) {
   // const { cid } = useParams();
   // const { users, enrollments } = db;

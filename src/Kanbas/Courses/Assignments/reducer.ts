@@ -8,8 +8,8 @@ const initialState = {
     description: "new assignment description",
     points: 0,
     course: "",
-    due_date: Date.now() / 1000,
-    available_date: Date.now() / 1000,
+    due_date: Math.trunc(Date.now() / 1000),
+    available_date: Math.trunc(Date.now() / 1000),
   },
 };
 const assignmentsSlice = createSlice({

@@ -10,11 +10,13 @@ export default function PeopleDetails() {
   const { uid } = useParams();
   const [user, setUser] = useState<any>({});
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState("");
   const [editing, setEditing] = useState(false);
   const navigate = useNavigate();
   const saveUser = async () => {
     const [firstName, lastName] = name.split(" ");
-    const updatedUser = { ...user, firstName, lastName };
+    const updatedUser = { ...user, firstName, lastName, email, role };
     await client.updateUser(updatedUser);
     setUser(updatedUser);
     setEditing(false);
@@ -25,6 +27,8 @@ export default function PeopleDetails() {
     if (!uid) return;
     const user = await client.findUserById(uid);
     setUser(user);
+    setEmail(user.email);
+    setRole(user.role);
   };
   useEffect(() => {
     if (uid) fetchUser();
@@ -67,6 +71,7 @@ export default function PeopleDetails() {
             {user.firstName} {user.lastName}
           </div>
         )}
+        {/* edit user's name */}
         {user && editing && (
           <input
             className="form-control w-50 wd-edit-name"
@@ -80,7 +85,45 @@ export default function PeopleDetails() {
           />
         )}
       </div>
-      <b>Roles:</b> <span className="wd-roles"> {user.role} </span> <br />
+      {/* edit user's email */}
+      <div>
+        <b>Email:</b>
+        {!editing && <span className="wd-email"> {user.email} </span>}
+        {user && editing && (
+          <input
+            className="form-control w-50 wd-edit-email"
+            value={`${email}`}
+            onChange={(e) => setEmail(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                saveUser();
+              }
+            }}
+          />
+        )}
+      </div>
+      {/* edit user's role */}
+      <div>
+        <b>Roles:</b>
+        {!editing && <span className="wd-roles"> {user.role} </span>}
+        {user && editing && (
+          <select
+            className="form-select w-50 wd-edit-role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                saveUser();
+              }
+            }}
+          >
+            <option value="STUDENT">Students</option>
+            <option value="TA">Assistants</option>
+            <option value="FACULTY">Faculty</option>
+            <option value="ADMIN">Administrators</option>
+          </select>
+        )}
+      </div>
       <b>Login ID:</b> <span className="wd-login-id"> {user.loginId} </span>
       <br />
       <b>Section:</b> <span className="wd-section"> {user.section} </span>

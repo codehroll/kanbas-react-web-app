@@ -15,7 +15,7 @@ export default function AssignBeforeButtons({
   return (
     <div className="col-auto">
       <BsGripVertical className="me-2 fs-3" />
-      {currentUser.role === "FACULTY" && (
+      {(currentUser.role === "FACULTY" || currentUser.role === "ADMIN") && (
         <Link
           className="wd-assignment-link nav-link fs-2"
           to={`/Kanbas/Courses/${cid}/Assignments/${assignmentId}`}

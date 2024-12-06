@@ -80,7 +80,8 @@ export default function Assignments() {
                     </div>
 
                     <div className="col-auto float-end">
-                      {currentUser.role === "FACULTY" && (
+                      {(currentUser.role === "FACULTY" ||
+                        currentUser.role === "ADMIN") && (
                         <FaTrash
                           className="text-danger me-2 mb-1"
                           data-bs-toggle="modal"
