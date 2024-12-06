@@ -43,7 +43,7 @@ export default function Dashboard({
 
   const fetchEnrollments = async () => {
     const curUserEnrollments = await userClient.findMyEnrollments();
-    dispatch(setEnrollments(curUserEnrollments));
+    dispatch(setEnrollments(curUserEnrollments || []));
   };
   useEffect(() => {
     fetchEnrollments();
@@ -52,9 +52,7 @@ export default function Dashboard({
   const handleToggleEnrollments = () => {
     setShowAllCourses((prev) => !prev);
   };
-  // const eids = enrollments.map((e: any) => e.course);
 
-  // console.log("[HD]" + "enrollments: " + eids);
   type EnrollmentStatus = { [key: string]: boolean };
   // create an object that maps course IDs to their enrollment status (true or false). This requires accumulating information into a single object
   const [enrollmentStatus, setEnrollmentStatus] = useState<EnrollmentStatus>(
@@ -66,7 +64,6 @@ export default function Dashboard({
         const enrolled = enrollments.some(
           (enrollment: any) => enrollment.course._id === curCourse._id
         );
-        console.log(curCourse._id, enrolled);
         return { ...status, [curCourse._id]: enrolled };
       }, {});
       setEnrollmentStatus(initialStatus);
