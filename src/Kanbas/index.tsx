@@ -33,24 +33,20 @@ export default function Kanbas() {
 
   // fetch current user enrolled coureses
   const findCoursesForUser = async () => {
-    // try {
-    //   const courses = await userClient.findCoursesForUser(currentUser._id);
-    //   setCourses(courses);
-    // } catch (error) {
-    //   console.error(error);
-    // }
-
     try {
+      // console.log("[HD] calling backend");
       const courses = await userClient.findCoursesForUser(currentUser._id);
-      console.log("HD courses", courses);
+      // console.log("[HD] courses", courses);
       if (!courses || courses.length === 0) {
-        console.warn("No courses found for this user.");
+        console.log("No courses found for this user.");
         setCourses([]); // Set an empty array to avoid rendering issues
       } else {
+        // console.log("[HD] start setting courses");
         setCourses(courses);
+        // console.log("[HD] finish setting courses");
       }
     } catch (error) {
-      console.error("Failed to fetch courses:", error);
+      console.log("Failed to fetch courses:", error);
     }
   };
 
@@ -80,7 +76,7 @@ export default function Kanbas() {
     } else {
       findCoursesForUser();
     }
-    console.log("courses: ", courses);
+    // console.log("courses: ", courses);
   }, [currentUser, enrolling]);
 
   const updateEnrollment = async (courseId: string, enrolled: boolean) => {
@@ -101,7 +97,6 @@ export default function Kanbas() {
   };
 
   const addNewCourse = async () => {
-    // const newCourse = await userClient.createCourse(course);
     const newCourse = await courseClient.createCourse(course);
     setCourses([...courses, newCourse]);
   };
