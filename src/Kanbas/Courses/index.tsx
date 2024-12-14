@@ -9,7 +9,14 @@ import PeopleTable from "./People/Table";
 import * as coursesClient from "./client";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-// import { courses } from "../Database"; don't load courses from Database accept courses from Kanbas
+import Quizzes from "./Quizzes";
+import QuizEditor from "./Quizzes/QuizEditor";
+import QuizDetail from "./Quizzes/QuizDetail";
+import QuizPreview from "./Quizzes/QuizPreview";
+import QuizTaker from "./Quizzes/QuizTaker";
+import QuizLastRecord from "./Quizzes/QuizLastRecord";
+import NewQuestionEditor from "./Quizzes/QuestionEditor/NewQuestionEditor";
+import QuestionEditor from "./Quizzes/QuestionEditor/NewQuestionEditor"; // ???
 
 export default function Courses({ courses }: { courses: any[] }) {
   const { cid } = useParams();
@@ -49,6 +56,24 @@ export default function Courses({ courses }: { courses: any[] }) {
             <Route
               path="Assignments/:assignmentId"
               element={<AssignmentEditor />}
+            />
+            <Route path="Quizzes" element={<Quizzes />} />
+            <Route path="Quizzes/:qid/Editor" element={<QuizEditor />} />
+            <Route path="Quizzes/:qid" element={<QuizDetail />} />
+            <Route path="Quizzes/:qid/Preview" element={<QuizPreview />} />
+            <Route path="Quizzes/:qid/Take" element={<QuizTaker />} />
+            <Route
+              path="Quizzes/:qid/LastRecord"
+              element={<QuizLastRecord />}
+            />
+            <Route path="Quizzes/:qid/Questions" element={<QuestionEditor />} />
+            <Route
+              path="Quizzes/:qid/Questions/:questionId/Edit"
+              element={<QuestionEditor />}
+            />
+            <Route
+              path="Quizzes/:qid/edit/NewQuestion"
+              element={<NewQuestionEditor />}
             />
             <Route path="People" element={<PeopleTable users={users} />} />
           </Routes>
