@@ -125,7 +125,7 @@ function Quizzes() {
   return (
     <div>
       <div
-        id="wd-assignments"
+        id="wd-quizzes"
         className="d-flex align-items-center justify-content-between mb-3"
       >
         <div className="input-group w-50">
@@ -144,7 +144,7 @@ function Quizzes() {
       </div>
 
       {/* Assignment QUIZZES*/}
-      <ul id="wd-assignment-list" className="list-group rounded-0">
+      <ul id="wd-quizz-list" className="list-group rounded-0">
         {currentUser.role === "FACULTY" && quizzes.length === 0 ? (
           // Message and button when the quiz list is empty
           <li
@@ -157,14 +157,6 @@ function Quizzes() {
           <li className="list-group-item p-1 mb-3 fs-5 border-grey">
             <div className="wd-title p-3 ps-2 bg-secondary text-black">
               <AiFillCaretDown /> ASSIGNMENT QUIZZES
-              <BiDotsVerticalRounded className="float-end mt-2" />
-              <AiOutlinePlus className="float-end mt-2" />
-              <button
-                type="button"
-                className="btn btn-outline-secondary text-black float-end me-1"
-              >
-                40% of Total
-              </button>
             </div>
             <ul className="list-group list-group-flush">
               {quizzes.map(
