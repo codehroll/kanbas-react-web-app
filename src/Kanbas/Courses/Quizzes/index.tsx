@@ -104,6 +104,7 @@ function Quizzes() {
     fetchQuizzes();
   };
 
+  // get Availability Status for quiz
   const getAvailabilityStatus = (
     availableDate: string,
     availableUntilDate: string

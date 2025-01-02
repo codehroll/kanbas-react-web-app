@@ -46,14 +46,14 @@ const QuizTab = () => {
     fontWeight: "bold",
   };
 
-
-
   return (
     <div style={cardStyle}>
-<div style={{ ...cardHeaderStyle, justifyContent: "flex-start" }}>
-{/* Details Tab */}
+      <div style={{ ...cardHeaderStyle, justifyContent: "flex-start" }}>
+        {/* Details Tab */}
         <div
-          style={activeSegment === "Editor" ? activeLinkStyle : inactiveLinkStyle}
+          style={
+            activeSegment === "Editor" ? activeLinkStyle : inactiveLinkStyle
+          }
           onClick={() =>
             navigate(`/Kanbas/Courses/${cid}/Quizzes/${quizId}/Editor`)
           }
@@ -63,7 +63,9 @@ const QuizTab = () => {
 
         {/* Questions Tab */}
         <div
-          style={activeSegment === "Preview" ? activeLinkStyle : inactiveLinkStyle}
+          style={
+            activeSegment === "Preview" ? activeLinkStyle : inactiveLinkStyle
+          }
           onClick={() =>
             navigate(`/Kanbas/Courses/${cid}/Quizzes/${quizId}/Preview`)
           }
@@ -71,8 +73,7 @@ const QuizTab = () => {
           Questions
         </div>
       </div>
-      {/* 卡片内容区域 */}
-      
+      {/* content area */}
     </div>
   );
 };
