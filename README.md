@@ -1,7 +1,5 @@
 # Kanbas – Online Learning & Course Management System
 
----
-
 ## Project Overview
 
 Kanbas is a full-stack online learning and course management platform developed using the MERN stack. Inspired by Canvas, it delivers essential functionalities for managing courses, assignments, quizzes, and grading in a secure and user-friendly environment.
