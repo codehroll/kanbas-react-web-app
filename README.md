@@ -17,11 +17,9 @@ Kanbas is a full-stack online learning and course management platform developed 
 ### User Types & Role-Specific Features
 
 - **Students:**  
-  - Personalized dashboards  
-  - Browse and enroll/unenroll in courses  
+  - View personalized dashboards, browse and enroll/unenroll in courses  
   - Access course modules, assignments, quizzes (if published and available)  
-  - Submit assignments and participate in quizzes  
-  - View scores and feedback
+  - Submit assignments and participate in quizzes.View scores and feedback
 
 - **Faculty:**  
   - Create and manage courses  
@@ -31,7 +29,7 @@ Kanbas is a full-stack online learning and course management platform developed 
   - Manage user accounts and permissions  
   - Oversee system operation for smooth LMS functioning
 
-- **TAs (Work in Progress):**  
+- **TAs (work in grogress):**  
   - Assist faculty with grading and course management  
   - Provide feedback on student submissions
 
