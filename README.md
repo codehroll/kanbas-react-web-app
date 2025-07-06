@@ -1,110 +1,55 @@
-# Kanbas React Web Application
+# Kanbas – Online Learning & Course Management System
 
-A comprehensive learning management system built with React, TypeScript, and Bootstrap, featuring course management, assignments, and lab modules.
+## Project Overview
 
-## Features
+Kanbas is a full-stack online learning and course management platform developed using the MERN stack. Inspired by Canvas, it delivers essential functionalities for managing courses, assignments, quizzes, and grading in a secure and user-friendly environment.
 
-### 1. Course Management
+- **Deployment:** [Kanbas React Web App](https://kanbas-react-web-app-24fall.netlify.app/)  
+  
+- **Backend:** [Kanbas Node Server](https://github.com/codehroll/kanbas-node-server-app) 
 
-- Dynamic course listing and navigation
-- Course-specific modules and content organization
-- Responsive layout with sidebar navigation
-- Status tracking and course progress monitoring
+---
 
-### 2. Assignment System
+## Key Features
 
-- Create and manage course assignments
-- Assignment grading and due date management
-- Multiple submission types support (file uploads, text entries)
-- Assignment status tracking with visual indicators
-- Points and grading system integration
+### User Types & Role-Specific Features
 
-### 3. Lab Modules
+- **Students:**  
+  - View personalized dashboards, browse and enroll/unenroll in courses  
+  - Access course modules, assignments, quizzes (if published and available)  
+  - Submit assignments and participate in quizzes.View scores and feedback
 
-The application includes several lab modules for learning and practice:
+- **Faculty:**  
+  - Create and manage courses  
+  - Add, edit, remove modules, assignments, quizzes, and quiz questions
 
-#### Lab 1: HTML Fundamentals
+- **Admins:**  
+  - Manage user accounts and permissions  
+  - Oversee system operation for smooth LMS functioning
 
-- Basic HTML elements and structure
-- Forms and input elements
-- Tables and lists
-- Image handling and multimedia
+- **TAs (work in grogress):**  
+  - Assist faculty with grading and course management  
+  - Provide feedback on student submissions
 
-#### Lab 2: CSS and Bootstrap
+### Core Screens & Functionalities
 
-- CSS styling and selectors
-- Bootstrap grid system
-- Responsive tables
-- Document structure styling
-
-#### Lab 3: JavaScript and React Basics
-
-- Variable handling and types
-- Array operations
-- Conditional rendering
-- Component lifecycle
-- State management
-
-### 4. Technical Features
-
-- TypeScript integration for type safety
-- Redux state management
-- Responsive design using Bootstrap
-- React Router for navigation
-- Component-based architecture
+- **Dashboard:** Role-specific views with relevant updates and actions  
+- **Courses:** Detailed course pages with modules, assignments, and quizzes  
+- **Modules:** Organized content with easy navigation  
+- **Assignments:** Submission tracking, grading, and feedback  
+- **Quizzes:** Timed assessments with automatic grading  
+- **Peoples:** List of all enrolled users in a course  
+- **Grades:** Display of student grades for assignments and quizzes
 
 ## Technology Stack
 
-- React 18.3.1
-- TypeScript 4.9.5
-- Redux Toolkit
-- Bootstrap 5.3.3
-- React Router 6.26.2
-- Axios for API calls
+- **Frontend:** React, Redux, HTML5, CSS3, Bootstrap, jQuery  
+- **Backend:** Node.js, Express.js (RESTful APIs)  
+- **Database:** MongoDB  
+- **Deployment:** Render (backend), Netlify (frontend)
 
-# Getting Started with Create React App
+---
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Feel free to contribute or raise issues!
 
-## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
